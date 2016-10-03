@@ -32,6 +32,7 @@ namespace BeerTapHypermediaWebApi.WebApi.Hypermedia
                     },
                 Operations = new StateSpecOperationsSource<Keg, int>()
                 {
+                    InitialPost = ServiceOperations.Create,
                     Get = ServiceOperations.Get,
                     Post = ServiceOperations.Update,
                     Delete = ServiceOperations.Delete,
