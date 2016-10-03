@@ -15,16 +15,16 @@ namespace BeerTapHypermediaWebApi.Model
         /// <param name="context"></param>
         protected override void Seed(KegContext context)
         {
-            List<KegOffice> kegOfficeList = new List<KegOffice>()
+            List<Office> kegOfficeList = new List<Office>()
             {
-                new KegOffice() {KegOfficeId = 1, KegOfficeName = "Vancouver"},
-                new KegOffice() {KegOfficeId = 2, KegOfficeName = "Regina"},
-                new KegOffice() {KegOfficeId = 3, KegOfficeName = "Winnipeg"},
-                new KegOffice() {KegOfficeId = 4, KegOfficeName = "Davidson (NC)"},
-                new KegOffice() {KegOfficeId = 5, KegOfficeName = "Manila Philippines"}
+                new Office() {KegOfficeId = 1, KegOfficeName = "Vancouver"},
+                new Office() {KegOfficeId = 2, KegOfficeName = "Regina"},
+                new Office() {KegOfficeId = 3, KegOfficeName = "Winnipeg"},
+                new Office() {KegOfficeId = 4, KegOfficeName = "Davidson (NC)"},
+                new Office() {KegOfficeId = 5, KegOfficeName = "Manila Philippines"}
             };
 
-            foreach (KegOffice office in kegOfficeList)
+            foreach (Office office in kegOfficeList)
             {
                 context.KegOffices.Add(office);
             }

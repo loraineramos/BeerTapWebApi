@@ -63,7 +63,7 @@ namespace BeerTapHypermediaWebApi.ApiServices
 
                 if (input.Id != 0)
                 {
-                    Keg keg = _con.Kegs.Where(w => w.KegId.Equals(input.Id)).FirstOrDefault();
+                    Keg keg = _con.Kegs.FirstOrDefault(w => w.KegId.Equals(input.Id));
                     _con.Kegs.Attach(keg);
                     _con.Entry(keg).State = EntityState.Deleted;
                     _con.SaveChanges();
@@ -86,7 +86,7 @@ namespace BeerTapHypermediaWebApi.ApiServices
             {
                 bool officeidToken = context.UriParameters.GetByName<int>("kegOfficeId").HasValue;
                 if (officeidToken) { officeId = context.UriParameters.GetByName<int>("kegOfficeId").Value; }
-                keg = _con.Kegs.Where(w => w.KegOfficeId.Equals(officeId) && w.KegId.Equals(id)).FirstOrDefault();
+                keg = _con.Kegs.FirstOrDefault(w => w.KegOfficeId.Equals(officeId) && w.KegId.Equals(id));
             }
             catch (Exception ex)
             {
@@ -127,7 +127,7 @@ namespace BeerTapHypermediaWebApi.ApiServices
             Keg origKeg = new Keg();
             try
             {
-                origKeg = _con.Kegs.Where(w => w.KegId.Equals(resource.Id)).FirstOrDefault();
+                origKeg = _con.Kegs.FirstOrDefault(w => w.KegId.Equals(resource.Id));
 
                 if (origKeg != null && origKeg.KegMl > 0)
                 {

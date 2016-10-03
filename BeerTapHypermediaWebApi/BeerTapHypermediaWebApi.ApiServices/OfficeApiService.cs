@@ -12,16 +12,16 @@ using IQ.Platform.Framework.WebApi;
 
 namespace BeerTapHypermediaWebApi.ApiServices
 {
-    public class KegOfficeApiService : IKegOfficeApiService
+    public class OfficeApiService : IOfficeApiService
     {
         private readonly KegContext _con = new KegContext();
 
-        public Task<KegOffice> GetAsync(int id, IRequestContext context, CancellationToken cancellation)
+        public Task<Office> GetAsync(int id, IRequestContext context, CancellationToken cancellation)
         {
-            KegOffice kegOffice = new KegOffice();
+            Office kegOffice = new Office();
             try
             {
-                kegOffice = _con.KegOffices.Where(w => w.KegOfficeId.Equals(id)).FirstOrDefault();
+                kegOffice = _con.KegOffices.FirstOrDefault(w => w.KegOfficeId.Equals(id));
             }
             catch (Exception ex)
             {
@@ -31,9 +31,9 @@ namespace BeerTapHypermediaWebApi.ApiServices
             return Task.FromResult(kegOffice);
         }
 
-        public Task<IEnumerable<KegOffice>> GetManyAsync(IRequestContext context, CancellationToken cancellation)
+        public Task<IEnumerable<Office>> GetManyAsync(IRequestContext context, CancellationToken cancellation)
         {
-            List<KegOffice> kegOfficeList = new List<KegOffice>();
+            List<Office> kegOfficeList = new List<Office>();
             try
             {
                 kegOfficeList = _con.KegOffices.ToList();
@@ -43,14 +43,15 @@ namespace BeerTapHypermediaWebApi.ApiServices
 
                 string exMsg = ex.Message;
             }
-            return Task.FromResult<IEnumerable<KegOffice>>(kegOfficeList);
+            return Task.FromResult<IEnumerable<Office>>(kegOfficeList);
         }
 
-        public Task<ResourceCreationResult<KegOffice, int>> CreateAsync(KegOffice resource, IRequestContext context,
+        public Task<ResourceCreationResult<Office, int>> CreateAsync(Office resource, IRequestContext context,
             CancellationToken cancellation)
         {
             try
             {
+                if(resource != null)
                 _con.KegOffices.Add(resource);
                 _con.SaveChanges();
 
@@ -60,24 +61,15 @@ namespace BeerTapHypermediaWebApi.ApiServices
 
                 string exMsg = ex.Message;
             }
-            return Task.FromResult(new ResourceCreationResult<KegOffice, int>(resource));
+            return Task.FromResult(new ResourceCreationResult<Office, int>(resource));
         }
 
-        public Task<KegOffice> UpdateAsync(KegOffice resource, IRequestContext context, CancellationToken cancellation)
+        public Task<Office> UpdateAsync(Office resource, IRequestContext context, CancellationToken cancellation)
         {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-
-                string exMsg = ex.Message;
-            }
-            throw new Exception();
+            throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(ResourceOrIdentifier<KegOffice, int> input, IRequestContext context,
+        public Task DeleteAsync(ResourceOrIdentifier<Office, int> input, IRequestContext context,
             CancellationToken cancellation)
         {
             try

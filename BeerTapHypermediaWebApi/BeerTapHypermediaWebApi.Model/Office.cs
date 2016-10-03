@@ -12,7 +12,7 @@ namespace BeerTapHypermediaWebApi.Model
     /// <summary>
     /// 
     /// </summary>
-    public class KegOffice : IStatelessResource, IIdentifiable<int>
+    public class Office : IStatelessResource, IIdentifiable<int>
     {
         /// <summary>
         /// This is the Unique Identifier of the Keg Office

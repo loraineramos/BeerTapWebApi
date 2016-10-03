@@ -9,7 +9,7 @@ namespace BeerTapHypermediaWebApi.WebApi.Hypermedia
     public class KegSpec : ResourceSpec<Keg, KegState, int>
     {
 
-        public static ResourceUriTemplate Uri = ResourceUriTemplate.Create("KegOffices({kegOfficeId})/Kegs({id})");
+        public static ResourceUriTemplate Uri = ResourceUriTemplate.Create("Offices({kegOfficeId})/Kegs({id})");
 
         public override string EntrypointRelation
         {

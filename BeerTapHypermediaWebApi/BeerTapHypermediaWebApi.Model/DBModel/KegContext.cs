@@ -20,7 +20,7 @@ namespace BeerTapHypermediaWebApi.Model
         /// <summary>
         /// 
         /// </summary>
-        public DbSet<KegOffice> KegOffices { get; set; }
+        public DbSet<Office> KegOffices { get; set; }
         ///// <summary>
         ///// 
         ///// </summary>

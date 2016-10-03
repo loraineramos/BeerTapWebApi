@@ -12,7 +12,7 @@
         /// <summary>
         /// link relation to keg office
         /// </summary>
-	    public const string KegOffice = "iq:KegOffice";
+	    public const string Office = "iq:Office";
 
         /// <summary>
         /// 

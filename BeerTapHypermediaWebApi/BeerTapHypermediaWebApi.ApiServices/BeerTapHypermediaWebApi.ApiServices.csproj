@@ -186,11 +186,11 @@
   <ItemGroup>
     <Compile Include="IDomainServiceResolver.cs" />
     <Compile Include="IKegApiService.cs" />
-    <Compile Include="IKegOfficeApiService.cs" />
+    <Compile Include="IOfficeApiService.cs" />
     <Compile Include="IReplaceKegApiService.cs" />
     <Compile Include="LinksParametersSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="KegOfficeApiService.cs" />
+    <Compile Include="OfficeApiService.cs" />
     <Compile Include="ReplaceKegApiService.cs" />
     <Compile Include="Security\ApiClient.cs" />
     <Compile Include="Security\AuthenticationFailedException.cs" />

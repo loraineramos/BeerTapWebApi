@@ -75,7 +75,7 @@
     <Compile Include="Helper\KegHelper.cs" />
     <Compile Include="Enum\KegState.cs" />
     <Compile Include="IStatefulKeg.cs" />
-    <Compile Include="KegOffice.cs" />
+    <Compile Include="Office.cs" />
     <Compile Include="LinkRelations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Keg.cs" />
