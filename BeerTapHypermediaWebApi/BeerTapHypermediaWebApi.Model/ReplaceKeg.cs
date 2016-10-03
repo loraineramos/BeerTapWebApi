@@ -21,7 +21,7 @@ namespace BeerTapHypermediaWebApi.Model
         /// <summary>
         /// Keg Id
         /// </summary>
-        public string KegId { get; set; }
+        public int KegId { get; set; }
         /// <summary>
         /// Keg Ml
         /// </summary>

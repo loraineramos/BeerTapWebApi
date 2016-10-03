@@ -1,4 +1,4 @@
-﻿using BeerTapHypermediaWebApi.Model.Enum;
+﻿using BeerTapHypermediaWebApi.Model;
 using IQ.Platform.Framework.Common;
 using IQ.Platform.Framework.WebApi.Model.Hypermedia;
 using System;
@@ -22,23 +22,15 @@ namespace BeerTapHypermediaWebApi.Model
         /// <summary>
         /// This is the Id of the Keg Offices
         /// </summary>
-        public string KegOfficeId { get; set; }
-
-        /// <summary>
-        /// This is the state of the Keg Offices
-        /// </summary>
-        public KegOfficeState KegOfficeState { get; set; }
-
+        public int KegOfficeId { get; set; }
+        
         /// <summary>
         /// This is the Office Name of the Keg Offices
         /// </summary>
         public string KegOfficeName { get; set; }
-        /// <summary>
-        /// This is the Beer Keg in the Office
-        /// </summary>
-        public Keg Keg { get; set; }
 
-    
+
+
     }
 
 

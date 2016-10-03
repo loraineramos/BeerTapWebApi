@@ -9,31 +9,26 @@ using IQ.Platform.Framework.WebApi.Model.Hypermedia;
 
 namespace BeerTapHypermediaWebApi.WebApi.Hypermedia
 {
-    public class KegOfficeSpec : SingleStateResourceSpec<KegOffice, int>
+    public class KegsAndKegOfficesSpec : SingleStateResourceSpec<KegAndKegOffice, int>
     {
-        public static ResourceUriTemplate Uri = ResourceUriTemplate.Create("KegOffices({id})");
+        public static ResourceUriTemplate UriKegAtOffice = ResourceUriTemplate.Create("KegOffices({kegOfficeId})/Kegs({kegId})");
 
-
-        public override string EntrypointRelation
+        protected override IEnumerable<ResourceLinkTemplate<KegAndKegOffice>> Links()
         {
-            get { return LinkRelations.KegOffice; }
+            yield return CreateLinkTemplate(CommonLinkRelations.Self, UriKegAtOffice, c => c.Keg.KegOfficeId, c => c.Keg.KegId);
         }
-        protected override IEnumerable<ResourceLinkTemplate<KegOffice>> Links()
-        {
-            yield return CreateLinkTemplate(CommonLinkRelations.Self, Uri, c => c.KegOfficeId);
-        }
-        public override IResourceStateSpec<KegOffice, NullState, int> StateSpec
+        public override IResourceStateSpec<KegAndKegOffice, NullState, int> StateSpec
         {
             get
             {
                 return
-                  new SingleStateSpec<KegOffice, int>
+                  new SingleStateSpec<KegAndKegOffice, int>
                   {
                       Links =
                       {
                            //CreateLinkTemplate(LinkRelations.Keg ,KegSpec.Uri , r=> r.KegOfficeId),
                       },
-                      Operations = new StateSpecOperationsSource<KegOffice, int>
+                      Operations = new StateSpecOperationsSource<KegAndKegOffice, int>
                       {
                           Get = ServiceOperations.Get,
                           InitialPost = ServiceOperations.Create,

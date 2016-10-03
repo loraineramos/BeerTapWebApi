@@ -25,7 +25,7 @@ namespace BeerTapHypermediaWebApi.ApiServices
 
                 if (id != 0)
                 {
-                    keg = _con.Kegs.Where(w => w.KegId.Equals(id.ToString())).FirstOrDefault();
+                    keg = _con.Kegs.Where(w => w.KegId.Equals(id)).FirstOrDefault();
                     keg.KegMl = 1000;
                     keg.KegState = KegState.New;
                     _con.Entry(keg).State = EntityState.Modified;

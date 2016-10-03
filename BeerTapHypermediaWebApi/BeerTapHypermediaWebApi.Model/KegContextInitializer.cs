@@ -1,24 +1,20 @@
-namespace BeerTapHypermediaWebApi.Model.Migrations
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BeerTapHypermediaWebApi.Model
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-    using BeerTapHypermediaWebApi.Model;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<BeerTapHypermediaWebApi.Model.KegContext>
+    public class KegContextInitializer : DropCreateDatabaseIfModelChanges<KegContext>
     {
-        public Configuration()
+        /// <summary>
+        /// This is to create Keg Offices when DB was first initialize
+        /// </summary>
+        /// <param name="context"></param>
+        protected override void Seed(KegContext context)
         {
-            AutomaticMigrationsEnabled = true;
-            ContextKey = "BeerTapHypermediaWebApi.Model.KegContext"; ;
-        }
-
-        protected override void Seed(BeerTapHypermediaWebApi.Model.KegContext context)
-        {
-            //  This method will be called after migrating to the latest version.
-
             List<KegOffice> kegOfficeList = new List<KegOffice>()
             {
                 new KegOffice() {KegOfficeId = 1, KegOfficeName = "Vancouver"},

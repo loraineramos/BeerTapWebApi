@@ -13,26 +13,22 @@ namespace BeerTapHypermediaWebApi.Model.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         KegOfficeId = c.String(),
-                        KegOfficeState = c.Int(nullable: false),
                         KegOfficeName = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
-            
+
             CreateTable(
-                "dbo.Kegs",
-                c => new
+                    "dbo.Kegs",
+                    c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         KegId = c.String(),
                         KegMl = c.Int(nullable: false),
                         Description = c.String(),
-                        KegState = c.Int(nullable: false),
-                        KegOffice_Id = c.Int(),
+                        KegState = c.Int(nullable: false)
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.KegOffices", t => t.KegOffice_Id)
-                .Index(t => t.KegOffice_Id);
-            
+                .PrimaryKey(t => t.Id);
+
         }
         
         public override void Down()

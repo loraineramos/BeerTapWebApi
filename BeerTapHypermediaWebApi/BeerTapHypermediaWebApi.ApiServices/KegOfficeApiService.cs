@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using BeerTapHypermediaWebApi.Model;
-using BeerTapHypermediaWebApi.Model.Enum;
 using IQ.Platform.Framework.Common;
 using IQ.Platform.Framework.WebApi;
 
@@ -22,15 +21,7 @@ namespace BeerTapHypermediaWebApi.ApiServices
             KegOffice kegOffice = new KegOffice();
             try
             {
-
-                var kegId =
-                    context.UriParameters.GetByName<string>("kegId")
-                        .EnsureValue(
-                            () =>
-                                context.CreateHttpResponseException<Keg>("The placeId must be supplied in the URI",
-                                    HttpStatusCode.BadRequest));
-                kegOffice = _con.KegOffices.Where(w => w.KegOfficeId.Equals(id.ToString())).FirstOrDefault();
-                kegOffice.Keg = _con.Kegs.Where(a => a.KegId.Equals(kegId)).FirstOrDefault();
+                kegOffice = _con.KegOffices.Where(w => w.KegOfficeId.Equals(id)).FirstOrDefault();
             }
             catch (Exception ex)
             {

@@ -69,40 +69,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBModel\KegContext.cs" />
+    <Compile Include="KegContextInitializer.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ReplaceKeg.cs" />
-    <Compile Include="Enum\KegOfficeState.cs" />
-    <Compile Include="Helper\IServiceUtil.cs" />
     <Compile Include="Helper\KegHelper.cs" />
     <Compile Include="Enum\KegState.cs" />
-    <Compile Include="Helper\ResponseUtility.cs" />
-    <Compile Include="Helper\ServiceUtil.cs" />
     <Compile Include="IStatefulKeg.cs" />
     <Compile Include="KegOffice.cs" />
     <Compile Include="LinkRelations.cs" />
-    <Compile Include="Helper\MyKeg.cs" />
-    <Compile Include="Migrations\201609210532310_InitialCreate.cs" />
-    <Compile Include="Migrations\201609210532310_InitialCreate.Designer.cs">
-      <DependentUpon>201609210532310_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609220137393_Keg.cs" />
-    <Compile Include="Migrations\201609220137393_Keg.Designer.cs">
-      <DependentUpon>201609220137393_Keg.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Keg.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201609210532310_InitialCreate.resx">
-      <DependentUpon>201609210532310_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609220137393_Keg.resx">
-      <DependentUpon>201609220137393_Keg.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

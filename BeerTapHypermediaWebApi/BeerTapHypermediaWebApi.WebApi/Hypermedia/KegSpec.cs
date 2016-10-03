@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using BeerTapHypermediaWebApi.Model;
-using BeerTapHypermediaWebApi.Model.Enum;
 using IQ.Platform.Framework.WebApi.Hypermedia;
 using IQ.Platform.Framework.WebApi.Hypermedia.Specs;
 using IQ.Platform.Framework.WebApi.Model.Hypermedia;
@@ -8,10 +7,9 @@ using IQ.Platform.Framework.WebApi.Model.Hypermedia;
 namespace BeerTapHypermediaWebApi.WebApi.Hypermedia
 {
     public class KegSpec : ResourceSpec<Keg, KegState, int>
-    //SingleStateResourceSpec<Keg, int>
     {
 
-        public static ResourceUriTemplate Uri = ResourceUriTemplate.Create("Kegs({id})");
+        public static ResourceUriTemplate Uri = ResourceUriTemplate.Create("KegOffices({kegOfficeId})/Kegs({id})");
 
         public override string EntrypointRelation
         {
@@ -21,7 +19,7 @@ namespace BeerTapHypermediaWebApi.WebApi.Hypermedia
 
         protected override IEnumerable<ResourceLinkTemplate<Keg>> Links()
         {
-            yield return CreateLinkTemplate(CommonLinkRelations.Self, Uri, c => c.KegId);
+            yield return CreateLinkTemplate(CommonLinkRelations.Self, Uri, c => c.KegOfficeId, c => c.KegId);
         }
 
         protected override IEnumerable<IResourceStateSpec<Keg, KegState, int>> GetStateSpecs()
@@ -30,12 +28,11 @@ namespace BeerTapHypermediaWebApi.WebApi.Hypermedia
             {
                 Links =
                     {
-                        CreateLinkTemplate(CommonLinkRelations.Self, Uri, c => c.KegId)
+                        CreateLinkTemplate(CommonLinkRelations.Self, Uri, c => c.KegOfficeId, c => c.KegId)
                     },
                 Operations = new StateSpecOperationsSource<Keg, int>()
                 {
                     Get = ServiceOperations.Get,
-                    InitialPost = ServiceOperations.Create,
                     Post = ServiceOperations.Update,
                     Delete = ServiceOperations.Delete,
                 }
@@ -45,12 +42,11 @@ namespace BeerTapHypermediaWebApi.WebApi.Hypermedia
             {
                 Links =
                     {
-                        CreateLinkTemplate(CommonLinkRelations.Self, Uri, c => c.KegId)
+                        CreateLinkTemplate(CommonLinkRelations.Self, Uri, c => c.KegOfficeId, c => c.KegId)
                     },
                 Operations = new StateSpecOperationsSource<Keg, int>()
                 {
                     Get = ServiceOperations.Get,
-                    InitialPost = ServiceOperations.Create,
                     Post = ServiceOperations.Update,
                     Delete = ServiceOperations.Delete,
                 }
@@ -64,7 +60,6 @@ namespace BeerTapHypermediaWebApi.WebApi.Hypermedia
                 Operations = new StateSpecOperationsSource<Keg, int>()
                 {
                     Get = ServiceOperations.Get,
-                    InitialPost = ServiceOperations.Create,
                     Post = ServiceOperations.Update,
                     Delete = ServiceOperations.Delete,
                 }
@@ -80,7 +75,6 @@ namespace BeerTapHypermediaWebApi.WebApi.Hypermedia
                 {
 
                     Get = ServiceOperations.Get,
-                    InitialPost = ServiceOperations.Create,
                     Post = ServiceOperations.Update,
                     Delete = ServiceOperations.Delete,
                 }

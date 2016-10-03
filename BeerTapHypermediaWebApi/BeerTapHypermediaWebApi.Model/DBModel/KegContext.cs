@@ -21,5 +21,13 @@ namespace BeerTapHypermediaWebApi.Model
         /// 
         /// </summary>
         public DbSet<KegOffice> KegOffices { get; set; }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public KegContext() : base ("KegContext")
+        //{
+        //    Database.SetInitializer<KegContext>(new KegContextInitializer());
+        //    //new KegContextInitializer().Seed();
+        //}
     }
 }

@@ -32,11 +32,15 @@ namespace BeerTapHypermediaWebApi.ApiServices
             CancellationToken cancellation)
         {
             Keg keg = new Keg();
+            int officeId = 0;
             try
             {
                 if (resource != null)
                 {
+                    bool officeidToken = context.UriParameters.GetByName<int>("kegOfficeId").HasValue;
+                    if (officeidToken) { officeId = context.UriParameters.GetByName<int>("kegOfficeId").Value; }
                     keg = resource;
+                    keg.KegOfficeId = officeId;
                     _con.Kegs.Add(keg);
                     _con.SaveChanges();
                 }
@@ -59,7 +63,7 @@ namespace BeerTapHypermediaWebApi.ApiServices
 
                 if (input.Id != 0)
                 {
-                    Keg keg = _con.Kegs.Where(w => w.KegId.Equals(input.Id.ToString())).FirstOrDefault();
+                    Keg keg = _con.Kegs.Where(w => w.KegId.Equals(input.Id)).FirstOrDefault();
                     _con.Kegs.Attach(keg);
                     _con.Entry(keg).State = EntityState.Deleted;
                     _con.SaveChanges();
@@ -77,9 +81,12 @@ namespace BeerTapHypermediaWebApi.ApiServices
         public Task<Keg> GetAsync(int id, IRequestContext context, CancellationToken cancellation)
         {
             Keg keg = new Keg();
+            int officeId = 0;
             try
             {
-                keg = _con.Kegs.Where(w => w.KegId.Equals(id.ToString())).FirstOrDefault();
+                bool officeidToken = context.UriParameters.GetByName<int>("kegOfficeId").HasValue;
+                if (officeidToken) { officeId = context.UriParameters.GetByName<int>("kegOfficeId").Value; }
+                keg = _con.Kegs.Where(w => w.KegOfficeId.Equals(officeId) && w.KegId.Equals(id)).FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -92,9 +99,19 @@ namespace BeerTapHypermediaWebApi.ApiServices
         public Task<IEnumerable<Keg>> GetManyAsync(IRequestContext context, CancellationToken cancellation)
         {
             List<Keg> kegList = new List<Keg>();
+            int officeId = 0;
             try
             {
-                kegList = _con.Kegs.ToList();
+                bool officeidToken = context.UriParameters.GetByName<int>("kegOfficeId").HasValue;
+                if (officeidToken) { officeId = context.UriParameters.GetByName<int>("kegOfficeId").Value; }
+
+                if (officeidToken)
+                {
+                    kegList = _con.Kegs.Where(w => w.KegOfficeId.Equals(officeId)).ToList();
+
+                }
+
+
             }
             catch (Exception ex)
             {
@@ -110,7 +127,7 @@ namespace BeerTapHypermediaWebApi.ApiServices
             Keg origKeg = new Keg();
             try
             {
-                origKeg = _con.Kegs.Where(w => w.KegId.Equals(resource.Id.ToString())).FirstOrDefault();
+                origKeg = _con.Kegs.Where(w => w.KegId.Equals(resource.Id)).FirstOrDefault();
 
                 if (origKeg != null && origKeg.KegMl > 0)
                 {

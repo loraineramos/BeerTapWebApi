@@ -1,4 +1,4 @@
-﻿using BeerTapHypermediaWebApi.Model.Enum;
+﻿using BeerTapHypermediaWebApi.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,17 +23,17 @@ namespace BeerTapHypermediaWebApi.Model
             //251-499 AlmostEmpty
             //500-750 GoingDown
             //751-1000 New
-            KegState returnKegState = KegState.New;
+            KegState returnKegState = KegState.Dry;
 
-            if (Enumerable.Range(0, 249).Contains(kegMl))
-            {
-                returnKegState = KegState.Dry;
-            }
-            if (Enumerable.Range(250, 499).Contains(kegMl))
+            //if (Enumerable.Range(0, 100).Contains(kegMl))
+            //{
+            //    returnKegState = KegState.Dry;
+            //}
+            if (Enumerable.Range(1, 299).Contains(kegMl))
             {
                 returnKegState = KegState.AlmostEmpty;
             }
-            if (Enumerable.Range(500, 749).Contains(kegMl))
+            if (Enumerable.Range(300, 749).Contains(kegMl))
             {
                 returnKegState = KegState.GoingDown;
             }

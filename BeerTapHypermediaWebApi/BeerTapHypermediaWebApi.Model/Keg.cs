@@ -1,5 +1,5 @@
 ﻿using System;
-using BeerTapHypermediaWebApi.Model.Enum;
+using BeerTapHypermediaWebApi.Model;
 using IQ.Platform.Framework.Common;
 using IQ.Platform.Framework.WebApi.Model.Hypermedia;
 
@@ -18,7 +18,12 @@ namespace BeerTapHypermediaWebApi.Model
         /// <summary>
         /// This is the Id of the Keg
         /// </summary>
-        public string KegId { get; set; }
+        public int KegId { get; set; }
+        /// <summary>
+        /// Keg Office Id 
+        /// </summary>
+        public int KegOfficeId { get; set; }
+
         /// <summary>
         /// Keg ML for the BeerKeg
         /// </summary>
@@ -33,14 +38,7 @@ namespace BeerTapHypermediaWebApi.Model
         /// </summary>
 	    public KegState KegState { get; set; }
 
-        ///// <summary>
-        ///// State of the Kegs Offices
-        ///// </summary>
-        //public KegOfficeState KegOfficeState { get; }
-        ///// <summary>
-        ///// Office of the Keg
-        ///// </summary>
-        //public KegOffice KegOffice { get; set; }
+
     }
 
 

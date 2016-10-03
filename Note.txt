@@ -1,0 +1,1 @@
+Please run Update-Database in Package Manager Console to insert data from Seed. Thanks

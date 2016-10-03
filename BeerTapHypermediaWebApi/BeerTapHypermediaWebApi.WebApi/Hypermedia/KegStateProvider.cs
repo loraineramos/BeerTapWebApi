@@ -29,6 +29,8 @@ where TKegResource : IStatefulResource<KegState>, IStatefulKeg
                 {
                     KegState.New, new[]
                     {
+                        KegState.GoingDown,
+                        KegState.AlmostEmpty,
                         KegState.Dry
                     }
 
@@ -36,21 +38,28 @@ where TKegResource : IStatefulResource<KegState>, IStatefulKeg
                 {
                     KegState.GoingDown, new[]
                     {
-                        KegState.New
+                        KegState.New,
+                        KegState.AlmostEmpty,
+                        KegState.Dry
                     }
 
                 },
                 {
                     KegState.AlmostEmpty, new[]
                     {
-                        KegState.New
+
+                        KegState.New,
+                        KegState.GoingDown,
+                        KegState.Dry
                     }
 
                 },
                 {
                     KegState.Dry, new[]
                     {
-                        KegState.New
+                        KegState.New,
+                        KegState.GoingDown,
+                        KegState.AlmostEmpty
                     }
 
                 }

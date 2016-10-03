@@ -16,10 +16,6 @@ namespace BeerTapHypermediaWebApi.WebApi.Hypermedia
 
         public static ResourceUriTemplate ReplaceKegUri = ResourceUriTemplate.Create("ReplaceKegs({id})");
 
-        //public override string EntrypointRelation
-        //{
-        //    get { return LinkRelations.ReplaceKegs.PourKeg; }
-        //}
 
         protected override IEnumerable<ResourceLinkTemplate<ReplaceKeg>> Links()
         {
