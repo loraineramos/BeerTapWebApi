@@ -19,16 +19,9 @@ namespace BeerTapHypermediaWebApi.Model
         /// <returns></returns>
         public static KegState GetKegState(int kegMl)
         {
-            //0-250 ML Dry
-            //251-499 AlmostEmpty
-            //500-750 GoingDown
-            //751-1000 New
+
             KegState returnKegState = KegState.Dry;
 
-            //if (Enumerable.Range(0, 100).Contains(kegMl))
-            //{
-            //    returnKegState = KegState.Dry;
-            //}
             if (Enumerable.Range(1, 299).Contains(kegMl))
             {
                 returnKegState = KegState.AlmostEmpty;
@@ -43,5 +36,6 @@ namespace BeerTapHypermediaWebApi.Model
             }
             return returnKegState;
         }
+
     }
 }

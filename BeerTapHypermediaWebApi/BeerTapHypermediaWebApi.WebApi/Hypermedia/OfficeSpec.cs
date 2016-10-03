@@ -18,10 +18,12 @@ namespace BeerTapHypermediaWebApi.WebApi.Hypermedia
         {
             get { return LinkRelations.Office; }
         }
+
         protected override IEnumerable<ResourceLinkTemplate<Office>> Links()
         {
             yield return CreateLinkTemplate(CommonLinkRelations.Self, Uri, c => c.KegOfficeId);
         }
+
         public override IResourceStateSpec<Office, NullState, int> StateSpec
         {
             get
@@ -31,7 +33,7 @@ namespace BeerTapHypermediaWebApi.WebApi.Hypermedia
                   {
                       Links =
                       {
-                           //CreateLinkTemplate(CommonLinkRelations.Self, Uri, c => c.KegOfficeId),
+                           CreateLinkTemplate(CommonLinkRelations.Self, Uri, c => c.KegOfficeId),
                       },
                       Operations = new StateSpecOperationsSource<Office, int>
                       {

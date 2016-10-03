@@ -47,8 +47,7 @@ namespace BeerTapHypermediaWebApi.ApiServices
             }
             catch (Exception ex)
             {
-
-                string exMsg = ex.Message;
+                throw context.CreateHttpResponseException<Keg>(ex.Message, HttpStatusCode.BadRequest);
             }
 
             return Task.FromResult(new ResourceCreationResult<Keg, int>(keg));
@@ -71,7 +70,7 @@ namespace BeerTapHypermediaWebApi.ApiServices
             }
             catch (Exception ex)
             {
-                string exMsg = ex.Message;
+                throw context.CreateHttpResponseException<Keg>(ex.Message, HttpStatusCode.BadRequest);
             }
 
             return Task.FromResult(input);
@@ -91,7 +90,7 @@ namespace BeerTapHypermediaWebApi.ApiServices
             catch (Exception ex)
             {
 
-                string exMsg = ex.Message;
+                throw context.CreateHttpResponseException<Keg>(ex.Message, HttpStatusCode.BadRequest);
             }
             return Task.FromResult(keg);
         }
@@ -116,7 +115,7 @@ namespace BeerTapHypermediaWebApi.ApiServices
             catch (Exception ex)
             {
 
-                string exMsg = ex.Message;
+                throw context.CreateHttpResponseException<Keg>(ex.Message, HttpStatusCode.BadRequest);
             }
             return Task.FromResult<IEnumerable<Keg>>(kegList);
         }
@@ -150,7 +149,7 @@ namespace BeerTapHypermediaWebApi.ApiServices
             }
             catch (Exception ex)
             {
-                string exMsg = ex.Message;
+                throw context.CreateHttpResponseException<Keg>(ex.Message, HttpStatusCode.BadRequest);
             }
 
             return Task.FromResult(origKeg);

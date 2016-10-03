@@ -6,15 +6,17 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using BeerTapHypermediaWebApi.ApiServices.Security;
 using BeerTapHypermediaWebApi.Model;
-using IQ.Platform.Framework.Common;
 using IQ.Platform.Framework.WebApi;
+using IQ.Platform.Framework.WebApi.Services.Security;
 
 namespace BeerTapHypermediaWebApi.ApiServices
 {
     public class OfficeApiService : IOfficeApiService
     {
         private readonly KegContext _con = new KegContext();
+
 
         public Task<Office> GetAsync(int id, IRequestContext context, CancellationToken cancellation)
         {
@@ -26,7 +28,7 @@ namespace BeerTapHypermediaWebApi.ApiServices
             catch (Exception ex)
             {
 
-                string exMsg = ex.Message;
+                throw context.CreateHttpResponseException<Office>(ex.Message, HttpStatusCode.BadRequest);
             }
             return Task.FromResult(kegOffice);
         }
@@ -41,7 +43,7 @@ namespace BeerTapHypermediaWebApi.ApiServices
             catch (Exception ex)
             {
 
-                string exMsg = ex.Message;
+                throw context.CreateHttpResponseException<Office>(ex.Message, HttpStatusCode.BadRequest);
             }
             return Task.FromResult<IEnumerable<Office>>(kegOfficeList);
         }
@@ -49,19 +51,24 @@ namespace BeerTapHypermediaWebApi.ApiServices
         public Task<ResourceCreationResult<Office, int>> CreateAsync(Office resource, IRequestContext context,
             CancellationToken cancellation)
         {
+            Office office = new Office();
             try
             {
-                if(resource != null)
-                _con.KegOffices.Add(resource);
-                _con.SaveChanges();
+                if (resource != null)
+                {
+                    office = resource;
+                    _con.KegOffices.Add(office);
+                    _con.SaveChanges();
+                   
+                }
 
             }
             catch (Exception ex)
             {
 
-                string exMsg = ex.Message;
+                throw context.CreateHttpResponseException<Office>(ex.Message, HttpStatusCode.BadRequest);
             }
-            return Task.FromResult(new ResourceCreationResult<Office, int>(resource));
+            return Task.FromResult(new ResourceCreationResult<Office, int>(office));
         }
 
         public Task<Office> UpdateAsync(Office resource, IRequestContext context, CancellationToken cancellation)
@@ -84,7 +91,7 @@ namespace BeerTapHypermediaWebApi.ApiServices
             catch (Exception ex)
             {
 
-                string exMsg = ex.Message;
+                throw context.CreateHttpResponseException<Office>(ex.Message, HttpStatusCode.BadRequest);
             }
             return Task.FromResult(input);
         }
