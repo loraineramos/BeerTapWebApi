@@ -33,7 +33,7 @@ namespace BeerTapHypermediaWebApi.WebApi.Hypermedia
                   {
                       Links =
                       {
-                           CreateLinkTemplate(CommonLinkRelations.Self, Uri, c => c.KegOfficeId),
+                           //CreateLinkTemplate(CommonLinkRelations.Self, Uri, c => c.KegOfficeId),
                       },
                       Operations = new StateSpecOperationsSource<Office, int>
                       {

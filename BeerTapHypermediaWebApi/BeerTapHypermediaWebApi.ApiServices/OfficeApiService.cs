@@ -59,7 +59,7 @@ namespace BeerTapHypermediaWebApi.ApiServices
                     office = resource;
                     _con.KegOffices.Add(office);
                     _con.SaveChanges();
-                   
+
                 }
 
             }
@@ -73,7 +73,17 @@ namespace BeerTapHypermediaWebApi.ApiServices
 
         public Task<Office> UpdateAsync(Office resource, IRequestContext context, CancellationToken cancellation)
         {
-            throw new NotImplementedException();
+            Office origOffice = new Office();
+            if (resource != null)
+            {
+                origOffice = _con.KegOffices.FirstOrDefault(w => w.KegOfficeId.Equals(resource.Id));
+                origOffice.KegOfficeName = resource.KegOfficeName;
+                _con.Entry(origOffice).State = EntityState.Modified;
+                _con.SaveChanges();
+            }
+
+            return Task.FromResult<Office>(origOffice);
+
         }
 
         public Task DeleteAsync(ResourceOrIdentifier<Office, int> input, IRequestContext context,
